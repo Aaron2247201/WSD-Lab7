@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(to right,#0c50cf, #30b3db, #0c50cf);
+}
+
+h1{
+  color: #17014a;
+  border:3px; 
+  border-style:solid; 
+  border-color:#2016ab; 
+  padding: 2px;
+}
+
+
+#test {
+    animation: fadein 2s;
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+
+.paras{
+  background-color:#43a5e6;
+}
+
+h2{
+  background-color:#2b498f;
+  color:#13002e;
+  text-align: center;
+}
+
+
+.topnav {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #333;
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+</style>
+</head>
+
+<body>
+<div id="test">
+<div class="topnav">
+  <a class="active" href="index.html">HOME</a>
+  <a href="plan.html">SHOWS</a>
+  <a href="about.html">ABOUT US</a>
+  <a href="info.html">INFO</a>
+  <a style="float:right" href="cookies.html">COOKIES</a>
+  <a style="float:right" href="login.html">SIGN IN</a>
+</div>
+
+<h1 align="center"><i>A2 MOVIES</i></h1>
+
+<div align="center">
+<img src="M1.png"  align="center">
+</div>
+<br>
+<hr>
+<div class="paras">
+<h2>A2 MOVIES</h2>
+<p style="margin-left: 20px">A2 is a Free Movies streaming site with zero ads.<br>
+   We let you watch movies online without having to register or paying, with over 10000 movies and TV-Series. <br><br>
+<strong>TO THE CRAZY CINEMOPHILES</strong><br><br>
+<i>We allow you to watch movies online in high quality HD.<br>The content is updated daily with non-buffering streaming servers.</i><br><br>
+</p>
+</div>
+<hr>
+
+<div class="paras">
+  <h2>SEARCH</h2>
+  <form action="https://www.google.com/search">
+  <label  style="margin-left: 20px" for="q">Search for movie:</label>
+  <input type="search" id="q" name="q" autocomplete="off" placeholder="Enter movie/show">
+  <input type="submit" value="Search">
+  <br><br>
+  </form>
+</div>
+<hr>
+
+<div class="paras" align="center">
+<h2>TRENDING</h2>
+
+<img src="image_map.jpg" alt="Image Map" usemap="#workmap" class="rez">
+
+<map name="workmap">
+  <area shape="rect" coords="1,1,361,672" alt="batman" href="https://en.wikipedia.org/wiki/The_Dark_Knight">
+  <area shape="rect" coords="370,1,779,670" alt="matrix" href="https://en.wikipedia.org/wiki/The_Matrix">
+  <area shape="rect" coords="790,1,1197,669" alt="avengers" href="https://en.wikipedia.org/wiki/Avengers:_Endgame">
+</map>
+
+</div>
+<hr>
+</div>
+</body>
+</html>

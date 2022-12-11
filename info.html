@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src=
+"https://maps.google.com/maps/api/js?sensor=false">
+</script>
+<script type="text/javascript">
+
+    function getlocation() {
+    if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showLoc, errHand);
+    navigator.geolocation.getCurrentPosition(showPosition, showError)
+    }
+    }
+
+    var x= document.getElementById("location");
+     
+     function showPosition(position){
+       var x = "Your current location is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " +    position.coords.longitude + ")";
+                document.getElementById("location").innerHTML = x;
+     }
+     function showError(error) {
+        switch(error.code){
+            case error.PERMISSION_DENIED:
+            alert("User denied the request for Geolocation API.");
+            break;
+        case error.POSITION_UNAVAILABLE:
+            alert("USer location information is unavailable.");
+            break;
+        case error.TIMEOUT:
+            alert("The request to get user location timed out.");
+            break;
+        case error.UNKNOWN_ERROR:
+            alert("An unknown error occurred.");
+            break;
+    }
+    }
+
+    function showLoc(pos) {
+    var x = document.getElementById("demo2");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+    latt = pos.coords.latitude;
+    long = pos.coords.longitude;
+    var lattlong = new google.maps.LatLng(latt, long);
+    var OPTions = {
+    center: lattlong,
+    zoom: 10,
+    mapTypeControl: true,
+    navigationControlOptions: {
+    style: google.maps.NavigationControlStyle.SMALL,
+    },
+    };
+    var mapg = new google.maps.Map(
+    document.getElementById("demo2"),
+    OPTions
+    );
+    var markerg = new google.maps.Marker({
+    position: lattlong,
+    map: mapg,
+    title: "You are here!",
+    });
+    }
+    function errHand(err) {
+    switch (err.code) {
+    case err.PERMISSION_DENIED:
+    result.innerHTML =
+    "The application doesn't have the permission" +
+    "to make use of location services";
+    break;
+    case err.POSITION_UNAVAILABLE:
+    result.innerHTML = "The location of the device is uncertain";
+    break;
+    case err.TIMEOUT:
+    result.innerHTML = "The request to get user location timed out";
+    break;
+    case err.UNKNOWN_ERROR:
+    result.innerHTML =
+    "Time to fetch location information exceeded" +
+    "the maximum timeout interval";
+    break;
+    }
+    }
+
+
+</script>
+
+<style>
+
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(to right,#0c50cf, #30b3db, #0c50cf);
+}
+
+h1{
+  color: #17014a;
+  border:3px; 
+  border-style:solid; 
+  border-color:#2016ab; 
+  padding: 2px;
+}
+
+
+#test {
+    animation: fadein 2s;
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+
+button
+{
+    width: 30%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #2525fa;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+
+canvas {
+	object-fit: contain;
+	width: 100%;
+	margin: 0px auto;
+	display: block;
+}
+
+a {
+	color: #fafafa;
+	transition: linear 0.3s;
+}
+
+a:hover {
+	opacity: 0.8;
+}
+
+
+button:hover
+{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+}
+
+.paras{
+  background-color:#43a5e6;
+}
+
+h2{
+  background-color:#2b498f;
+  color:#13002e;
+  text-align: center;
+}
+
+
+.topnav {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #333;
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .topnav a {
+    display: none;
+  }
+
+  #demo2{
+    width: 50vw; 
+    height: 50vw;
+  }
+}
+
+</style>
+</head>
+
+<body>
+<div id="test">
+<div class="topnav">
+  <a href="index.html">HOME</a>
+  <a href="plan.html">SHOWS</a>
+  <a href="about.html">ABOUT US</a>
+  <a class="active" href="info.html">INFO</a>
+  <a style="float:right" href="cookies.html">COOKIES</a>
+  <a style="float:right" href="login.html">SIGN IN</a>
+</div>
+
+
+
+<div class="paras" align="center">
+<h2>LOCATION</h2>
+
+<button type="button" onclick="getlocation();">
+ Get Current Position
+</button><br><br>
+<div id="location"></div><br>
+<div id="demo2" style="width: 50vw; height: 50vw; display: none;"" ></div>
+</div>
+<hr>
+<div class="paras" align="center">
+<h2>TIME</h2>
+</div>
+
+<canvas id="canvas"></canvas><br>
+<script>
+
+function drawText(text, x, y, color, size) {
+	ctx.font = `${size} "Poppins"`;
+	ctx.fillStyle = color;
+	ctx.fillText(text, x, y);
+}
+
+function drawRect(x, y, width, height, color) {
+	ctx.fillStyle = color;
+	ctx.fillRect(x, y, width, height);
+}
+
+function drawArc(x, y, radius, start, end, clockwise)
+{
+	ctx.beginPath();
+	ctx.arc(x, y, radius, start, end, clockwise);
+}
+
+function drawCircle(x, y, radius, start, end, clockwise, color, type, thickness) {
+	switch (type) {
+		case 'fill':
+			ctx.fillStyle = color;
+			drawArc(x, y, radius, start, end, clockwise)
+			ctx.fill();
+			break;
+		case 'stroke':
+			ctx.strokeStyle = color;
+			ctx.lineWidth = thickness;
+			drawArc(x, y, radius, start, end, clockwise)
+			ctx.stroke();
+			break
+	}
+}
+
+</script>
+<script>
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+const threePIByTwo = (3 * Math.PI) / 2;
+
+console.log(threePIByTwo);
+
+let amOrPm = 'AM';
+
+const canvasBg = '#1C1C28';
+
+const hourActiveColor = '#39D98A',
+	minuteActiveColor = '#3E7BFA',
+	secondActiveColor = '#FDAC42';
+
+const hourInactiveColor = '#3C4043',
+	minuteInactiveColor = '#2E3134',
+	secondInactiveColor = '#282A2D';
+
+const timerBg = '#282A2D';
+
+function init()
+{
+	canvas.width = document.documentElement.clientWidth - 35;
+	canvas.height = document.documentElement.clientHeight - 45;
+
+	window.requestAnimationFrame(draw);	
+}
+
+function draw()
+{
+	const centerX = canvas.width / 2,
+		centerY = canvas.height / 2;
+
+	const date = new Date();
+
+	let hr = date.getHours();
+	let min = date.getMinutes();
+	let sec = date.getSeconds();
+	let ms = date.getMilliseconds();
+
+	if(hr > 12)
+	{
+		amOrPm = 'PM';
+		hr -= 12;
+	}
+
+	/* Defines how much radians each hand should move */
+	let radH = 0.000008333 * ( ( hr * 60 * 60 * 1000 ) + ( min * 60 * 1000 ) + ( sec * 1000 ) + ms );
+	let radM = 0.0001 * ( ( min * 60 * 1000 ) + ( sec * 1000 ) + ms );
+	let radS = 0.006 * ( ( sec * 1000 ) + ms );
+
+
+	drawRect(0, 0, canvas.width, canvas.height, canvasBg);
+
+	drawCircle(centerX, centerY, 110, 0, 360 , false, hourInactiveColor, 'stroke', 90);
+	drawCircle(centerX, centerY, 110, threePIByTwo, rad(radH) + threePIByTwo, false, hourActiveColor, 'stroke', 90);
+
+	drawCircle(centerX, centerY, 180, 0, 360, false, minuteInactiveColor, 'stroke', 50);
+	drawCircle(centerX, centerY, 180, threePIByTwo, rad(radM) + threePIByTwo, false, minuteActiveColor, 'stroke', 50);
+
+	drawCircle(centerX, centerY, 220, 0, 360, false, secondInactiveColor, 'stroke', 30);
+	drawCircle(centerX, centerY, 220, threePIByTwo, rad(radS) + threePIByTwo, false, secondActiveColor, 'stroke', 30);
+
+	drawCircle(centerX, centerY, 90, 0, 360, false, timerBg, 'fill', '50');
+	drawText(`${hr.toString().padStart(2, "0")}:${min.toString().padStart(2, "0")} ${amOrPm}`, canvas.width / 2 - 60, canvas.height / 2 + 15, '#ffffff', '28px');
+
+	window.requestAnimationFrame(draw);
+}
+
+init();
+
+function rad(deg){
+	return  (Math.PI / 180) * deg;
+}
+
+
+</script>
+<hr>
+</div>
+</body>
+</html>
