@@ -1,6 +1,6 @@
 body{
     font-family: sans-serif;
-    background-color: black;
+    background-color: #333333;
     color: white;
     
 }
@@ -33,13 +33,13 @@ td{
 th{
     padding: 5px;
     text-align: left;
-    background-color: purple;
+    background-color: #006699;
     color: white;
     text-align: center;
     font-weight: bold;
 }
 #tablediv{
-    background-color: rgb(165, 165, 7);
+    background-color: #0099CC;
     width: fit-content;
     margin: auto;
     padding: 30px;
